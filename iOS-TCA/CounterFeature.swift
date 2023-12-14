@@ -13,6 +13,7 @@ struct CounterFeature {
     struct State: Equatable {
         var count = 0
         var numberFactAlert: String? = nil
+        var isLoading = false
     }
     
     
@@ -35,24 +36,25 @@ struct CounterFeature {
                 
             case .decrementButtonTapped:
                 state.count -= 1
+                state.numberFactAlert = nil
                 return .none
                 
                 
             case .incrementButtonTapped:
+                state.numberFactAlert = nil
                 state.count += 1
                 return .none
                 
                 
             case .numberFactButtonTapped:
+                state.numberFactAlert = nil
+                state.isLoading = true
                 return .run { [count = state.count] send in
-                    let (data, _) = try await URLSession.shared.data(
-                        from: URL(string: "http://numbersapi.com/\(count)/trivia")!
-                    )
-                    await send(
-                        .numberFactResponse(String(decoding: data, as: UTF8.self))
-                    )
+                    let (data, _) = try await URLSession.shared
+                        .data(from: URL(string: "http://numbersapi.com/\(count)")!)
+                    let fact = String(decoding: data, as: UTF8.self)
+                    await send(.numberFactResponse(fact))
                 }
-                
                 
             case let .numberFactResponse(fact):
                 state.numberFactAlert = fact
