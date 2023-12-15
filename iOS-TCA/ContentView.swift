@@ -14,22 +14,68 @@ struct ContentView: View {
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             VStack {
-                HStack {
-                    Button("−") { viewStore.send(.decrementButtonTapped) }
+                VStack {
                     Text("\(viewStore.count)")
-                    Button("+") { viewStore.send(.incrementButtonTapped) }
+                        .font(.largeTitle)
+                        .padding()
+                        .background(Color.black.opacity(0.1))
+                        .cornerRadius(10)
+                    HStack {
+                        Button("-") {
+                            viewStore.send(.decrementButtonTapped)
+                        }
+                        .font(.largeTitle)
+                        .padding()
+                        .background(Color.black.opacity(0.1))
+                        .cornerRadius(10)
+                        
+                        
+                        Button("+") {
+                            viewStore.send(.incrementButtonTapped)
+                        }
+                        .font(.largeTitle)
+                        .padding()
+                        .background(Color.black.opacity(0.1))
+                        .cornerRadius(10)
+                    }
                 }
                 
+                /*
+                Button(viewStore.isTimeRunning ? "Stop timer" : "Start timer") {
+                    viewStore.send(.toggleButtonTapped)
+                }
+                .font(.largeTitle)
+                .padding()
+                .background(Color.black.opacity(0.1))
+                .cornerRadius(10)
+                */
                 
-                Button("Number fact") { viewStore.send(.numberFactButtonTapped) }
+                Button("Fact") {
+                    viewStore.send(.numberFactButtonTapped)
+                }
+                .font(.largeTitle)
+                .padding()
+                .background(Color.black.opacity(0.1))
+                .cornerRadius(10)
+                
+                
+                if viewStore.isLoading {
+                    ProgressView()
+                } else if let fact = viewStore.numberFactAlert {
+                    Text(fact)
+                        .font(.largeTitle)
+                        .multilineTextAlignment(.center)
+                        .padding()
+                }
             }
+            /*
             .alert(
                 item: viewStore.binding(
                     get: { $0.numberFactAlert.map(FactAlert.init(title:)) },
                     send: .factAlertDismissed
                 ),
                 content: { Alert(title: Text($0.title)) }
-            )
+            )*/
         }
     }
 }
