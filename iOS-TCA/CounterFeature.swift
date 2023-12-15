@@ -12,8 +12,9 @@ import ComposableArchitecture
 struct CounterFeature {
     struct State: Equatable {
         var count = 0
-        var numberFactAlert: String? = nil
+        var numberFactAlert: String?
         var isLoading = false
+        var isTimeRunning = false
     }
     
     
@@ -23,8 +24,11 @@ struct CounterFeature {
         case incrementButtonTapped
         case numberFactButtonTapped
         case numberFactResponse(String)
+        case timeTick
+        case toggleButtonTapped
     }
     
+    enum CancelID { case timer }
     
     var body: some Reducer<State, Action> {
         Reduce { state, action in
@@ -58,7 +62,25 @@ struct CounterFeature {
                 
             case let .numberFactResponse(fact):
                 state.numberFactAlert = fact
+                state.isLoading = false
                 return .none
+            case .timeTick:
+                state.count += 1
+                state.numberFactAlert = nil
+                return .none
+            case .toggleButtonTapped:
+                state.isTimeRunning.toggle()
+                if state.isTimeRunning {
+                    return .run { send in
+                        while true{
+                            try await Task.sleep(for: .seconds(1))
+                            await send(.timeTick)
+                        }
+                    }
+                    .cancellable(id: CancelID.timer)
+                }else {
+                    return .cancel(id: CancelID.timer)
+                }
             }
         }
     }
