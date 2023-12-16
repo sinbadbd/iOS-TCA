@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D08C0942B2E0925004BB92E /* ContactsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D08C0932B2E0925004BB92E /* ContactsFeature.swift */; };
 		1DAA5CFF2B2A277900FE02BE /* TCAApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAA5CFE2B2A277900FE02BE /* TCAApp.swift */; };
 		1DAA5D012B2A277900FE02BE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAA5D002B2A277900FE02BE /* ContentView.swift */; };
 		1DAA5D032B2A277B00FE02BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DAA5D022B2A277B00FE02BE /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D08C0932B2E0925004BB92E /* ContactsFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsFeature.swift; sourceTree = "<group>"; };
 		1DAA5CFB2B2A277900FE02BE /* iOS-TCA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-TCA.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DAA5CFE2B2A277900FE02BE /* TCAApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCAApp.swift; sourceTree = "<group>"; };
 		1DAA5D002B2A277900FE02BE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -38,6 +40,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D08C0922B2E0911004BB92E /* Feature */ = {
+			isa = PBXGroup;
+			children = (
+				1DAA5D102B2A36B300FE02BE /* CounterFeature.swift */,
+				1D08C0932B2E0925004BB92E /* ContactsFeature.swift */,
+			);
+			path = Feature;
+			sourceTree = "<group>";
+		};
 		1DAA5CF22B2A277900FE02BE = {
 			isa = PBXGroup;
 			children = (
@@ -57,13 +68,13 @@
 		1DAA5CFD2B2A277900FE02BE /* iOS-TCA */ = {
 			isa = PBXGroup;
 			children = (
+				1D08C0922B2E0911004BB92E /* Feature */,
 				1DAA5D122B2A3A9B00FE02BE /* Info.plist */,
 				1DAA5CFE2B2A277900FE02BE /* TCAApp.swift */,
 				1DAA5D002B2A277900FE02BE /* ContentView.swift */,
 				1DAA5D022B2A277B00FE02BE /* Assets.xcassets */,
 				1DAA5D042B2A277B00FE02BE /* iOS_TCA.entitlements */,
 				1DAA5D052B2A277B00FE02BE /* Preview Content */,
-				1DAA5D102B2A36B300FE02BE /* CounterFeature.swift */,
 			);
 			path = "iOS-TCA";
 			sourceTree = "<group>";
@@ -155,6 +166,7 @@
 				1DAA5D112B2A36B300FE02BE /* CounterFeature.swift in Sources */,
 				1DAA5D012B2A277900FE02BE /* ContentView.swift in Sources */,
 				1DAA5CFF2B2A277900FE02BE /* TCAApp.swift in Sources */,
+				1D08C0942B2E0925004BB92E /* ContactsFeature.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
