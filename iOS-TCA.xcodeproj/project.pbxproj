@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1D08C0942B2E0925004BB92E /* ContactsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D08C0932B2E0925004BB92E /* ContactsFeature.swift */; };
+		1D08C0972B2E0DF8004BB92E /* ContacTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D08C0962B2E0DF8004BB92E /* ContacTabView.swift */; };
+		1D08C09A2B2E1B97004BB92E /* AddContactFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D08C0992B2E1B97004BB92E /* AddContactFeature.swift */; };
+		1D08C09D2B2E1CF0004BB92E /* AddContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D08C09C2B2E1CF0004BB92E /* AddContactView.swift */; };
 		1DAA5CFF2B2A277900FE02BE /* TCAApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAA5CFE2B2A277900FE02BE /* TCAApp.swift */; };
 		1DAA5D012B2A277900FE02BE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAA5D002B2A277900FE02BE /* ContentView.swift */; };
 		1DAA5D032B2A277B00FE02BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DAA5D022B2A277B00FE02BE /* Assets.xcassets */; };
@@ -18,6 +21,9 @@
 
 /* Begin PBXFileReference section */
 		1D08C0932B2E0925004BB92E /* ContactsFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsFeature.swift; sourceTree = "<group>"; };
+		1D08C0962B2E0DF8004BB92E /* ContacTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContacTabView.swift; sourceTree = "<group>"; };
+		1D08C0992B2E1B97004BB92E /* AddContactFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactFeature.swift; sourceTree = "<group>"; };
+		1D08C09C2B2E1CF0004BB92E /* AddContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactView.swift; sourceTree = "<group>"; };
 		1DAA5CFB2B2A277900FE02BE /* iOS-TCA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-TCA.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DAA5CFE2B2A277900FE02BE /* TCAApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCAApp.swift; sourceTree = "<group>"; };
 		1DAA5D002B2A277900FE02BE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -43,10 +49,61 @@
 		1D08C0922B2E0911004BB92E /* Feature */ = {
 			isa = PBXGroup;
 			children = (
-				1DAA5D102B2A36B300FE02BE /* CounterFeature.swift */,
-				1D08C0932B2E0925004BB92E /* ContactsFeature.swift */,
+				1D08C09E2B2E1D14004BB92E /* Counter */,
+				1D08C0982B2E1AF7004BB92E /* Contact */,
+				1D08C09F2B2E1D57004BB92E /* AddContact */,
 			);
 			path = Feature;
+			sourceTree = "<group>";
+		};
+		1D08C0952B2E0DDF004BB92E /* Tab */ = {
+			isa = PBXGroup;
+			children = (
+				1DAA5D002B2A277900FE02BE /* ContentView.swift */,
+			);
+			path = Tab;
+			sourceTree = "<group>";
+		};
+		1D08C0982B2E1AF7004BB92E /* Contact */ = {
+			isa = PBXGroup;
+			children = (
+				1D08C0962B2E0DF8004BB92E /* ContacTabView.swift */,
+				1D08C09B2B2E1C6B004BB92E /* State+Action */,
+			);
+			path = Contact;
+			sourceTree = "<group>";
+		};
+		1D08C09B2B2E1C6B004BB92E /* State+Action */ = {
+			isa = PBXGroup;
+			children = (
+				1D08C0932B2E0925004BB92E /* ContactsFeature.swift */,
+			);
+			path = "State+Action";
+			sourceTree = "<group>";
+		};
+		1D08C09E2B2E1D14004BB92E /* Counter */ = {
+			isa = PBXGroup;
+			children = (
+				1DAA5D102B2A36B300FE02BE /* CounterFeature.swift */,
+			);
+			path = Counter;
+			sourceTree = "<group>";
+		};
+		1D08C09F2B2E1D57004BB92E /* AddContact */ = {
+			isa = PBXGroup;
+			children = (
+				1D08C09C2B2E1CF0004BB92E /* AddContactView.swift */,
+				1D08C0A02B2E1D70004BB92E /* State+Action */,
+			);
+			path = AddContact;
+			sourceTree = "<group>";
+		};
+		1D08C0A02B2E1D70004BB92E /* State+Action */ = {
+			isa = PBXGroup;
+			children = (
+				1D08C0992B2E1B97004BB92E /* AddContactFeature.swift */,
+			);
+			path = "State+Action";
 			sourceTree = "<group>";
 		};
 		1DAA5CF22B2A277900FE02BE = {
@@ -68,10 +125,10 @@
 		1DAA5CFD2B2A277900FE02BE /* iOS-TCA */ = {
 			isa = PBXGroup;
 			children = (
+				1D08C0952B2E0DDF004BB92E /* Tab */,
 				1D08C0922B2E0911004BB92E /* Feature */,
 				1DAA5D122B2A3A9B00FE02BE /* Info.plist */,
 				1DAA5CFE2B2A277900FE02BE /* TCAApp.swift */,
-				1DAA5D002B2A277900FE02BE /* ContentView.swift */,
 				1DAA5D022B2A277B00FE02BE /* Assets.xcassets */,
 				1DAA5D042B2A277B00FE02BE /* iOS_TCA.entitlements */,
 				1DAA5D052B2A277B00FE02BE /* Preview Content */,
@@ -164,8 +221,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				1DAA5D112B2A36B300FE02BE /* CounterFeature.swift in Sources */,
+				1D08C09A2B2E1B97004BB92E /* AddContactFeature.swift in Sources */,
 				1DAA5D012B2A277900FE02BE /* ContentView.swift in Sources */,
+				1D08C0972B2E0DF8004BB92E /* ContacTabView.swift in Sources */,
 				1DAA5CFF2B2A277900FE02BE /* TCAApp.swift in Sources */,
+				1D08C09D2B2E1CF0004BB92E /* AddContactView.swift in Sources */,
 				1D08C0942B2E0925004BB92E /* ContactsFeature.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
