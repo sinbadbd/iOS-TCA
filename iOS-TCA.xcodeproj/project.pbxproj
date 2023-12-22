@@ -13,6 +13,7 @@
 		1D08C09D2B2E1CF0004BB92E /* AddContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D08C09C2B2E1CF0004BB92E /* AddContactView.swift */; };
 		1D08C0A52B334483004BB92E /* TabContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D08C0A42B334483004BB92E /* TabContainerView.swift */; };
 		1D08C0A72B335560004BB92E /* AppFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D08C0A62B335560004BB92E /* AppFeature.swift */; };
+		1D08C0B32B35C17C004BB92E /* ContactsFeature+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D08C0B22B35C17C004BB92E /* ContactsFeature+Ext.swift */; };
 		1DAA5CFF2B2A277900FE02BE /* TCAApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAA5CFE2B2A277900FE02BE /* TCAApp.swift */; };
 		1DAA5D012B2A277900FE02BE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAA5D002B2A277900FE02BE /* ContentView.swift */; };
 		1DAA5D032B2A277B00FE02BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DAA5D022B2A277B00FE02BE /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 		1D08C09C2B2E1CF0004BB92E /* AddContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactView.swift; sourceTree = "<group>"; };
 		1D08C0A42B334483004BB92E /* TabContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabContainerView.swift; sourceTree = "<group>"; };
 		1D08C0A62B335560004BB92E /* AppFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFeature.swift; sourceTree = "<group>"; };
+		1D08C0B22B35C17C004BB92E /* ContactsFeature+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContactsFeature+Ext.swift"; sourceTree = "<group>"; };
 		1DAA5CFB2B2A277900FE02BE /* iOS-TCA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-TCA.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DAA5CFE2B2A277900FE02BE /* TCAApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCAApp.swift; sourceTree = "<group>"; };
 		1DAA5D002B2A277900FE02BE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				1D08C0932B2E0925004BB92E /* ContactsFeature.swift */,
+				1D08C0B22B35C17C004BB92E /* ContactsFeature+Ext.swift */,
 			);
 			path = "State+Action";
 			sourceTree = "<group>";
@@ -237,6 +240,7 @@
 				1D08C0A72B335560004BB92E /* AppFeature.swift in Sources */,
 				1DAA5D112B2A36B300FE02BE /* CounterFeature.swift in Sources */,
 				1D08C09A2B2E1B97004BB92E /* AddContactFeature.swift in Sources */,
+				1D08C0B32B35C17C004BB92E /* ContactsFeature+Ext.swift in Sources */,
 				1DAA5D012B2A277900FE02BE /* ContentView.swift in Sources */,
 				1D08C0972B2E0DF8004BB92E /* ContacTabView.swift in Sources */,
 				1DAA5CFF2B2A277900FE02BE /* TCAApp.swift in Sources */,
