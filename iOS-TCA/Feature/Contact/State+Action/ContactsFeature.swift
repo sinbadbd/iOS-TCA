@@ -31,13 +31,19 @@ extension Contact{
 struct ContactsFeature{
     struct State: Equatable{
         @PresentationState var addContact: AddContactFeature.State?
+        @PresentationState var alert: AlertState<Action.Alert>?
         var conatacts: IdentifiedArrayOf<Contact> = []
-//                var conatacts: [Contact]
     }
     
     enum Action{
         case addButtonTapped
         case addContact(PresentationAction<AddContactFeature.Action>)
+        case alert(PresentationAction<Alert>)
+        case deleteButtonTapped(id: Contact.ID)
+        
+        enum Alert: Equatable{
+            case confirmDelete(id: Contact.ID)
+        }
     }
     
     var body: some ReducerOf<Self>{
@@ -48,26 +54,45 @@ struct ContactsFeature{
                     contact: Contact( name: "")
                 )
                 return .none
-            /*
-            case .addContact(.presented(.delegate(.cancel))):
-                state.addContact = nil
-                return .none
-                */
-//            case .addContact(.presented(.delegate(.saveContact(conatacts)))): // old
+                /*
+                 case .addContact(.presented(.delegate(.cancel))):
+                 state.addContact = nil
+                 return .none
+                 */
+                //            case .addContact(.presented(.delegate(.saveContact(conatacts)))): // old
             case let .addContact(.presented(.delegate(.saveContact(contact)))): // new
                 /*guard let contact = state.addContact?.contact
-                else { return .none }*/
+                 else { return .none }*/
                 state.conatacts.append(contact)
                 state.addContact = nil
                 return .none
-                                
+                
             case .addContact:
                 return .none
-            
+                
+            case let .deleteButtonTapped(id: id):
+                
+                state.alert = AlertState{
+                    TextState("Are you Sure?")
+                }actions: {
+                    ButtonState(role: .destructive, action: .confirmDelete(id: id)) {
+                        TextState("Delete")
+                    }
+                }
+                return .none
+                
+            case let .alert(.presented(.confirmDelete(id: id))):
+                state.conatacts.remove(id: id)
+                return .none
+                
+                
+            case .alert:
+                return .none
             }
-        }  
+        }
         .ifLet(\.$addContact, action: \.addContact) {
             AddContactFeature()
         }
+        .ifLet(\.$alert, action: \.alert)
     }
 }
