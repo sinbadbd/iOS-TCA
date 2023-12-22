@@ -16,10 +16,7 @@ struct TabContainerView: View {
             
             ContentView(store: store.scope(state: \.tab1, action: \.tab1))
                 .tabItem {
-                    Text("Counter 1")
-                }
-                .tabItem {
-                    Label("Received", systemImage: "tray.and.arrow.down.fill")
+                    Label("Received", systemImage: "smallcircle.filled.circle.fill")
                 }
             
             ContacTabView(store: store.scope(state: \.tab2, action: \.tab2))

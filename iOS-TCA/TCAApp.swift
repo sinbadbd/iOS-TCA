@@ -15,9 +15,7 @@ struct TCAApp: App {
     }
     var body: some Scene {
         WindowGroup {
-            TabView {
-                TabContainerView(store: TCAApp.store)
-            }
+            TabContainerView(store: TCAApp.store)
         }
     }
 }
