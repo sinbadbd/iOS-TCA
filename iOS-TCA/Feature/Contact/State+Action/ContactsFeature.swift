@@ -30,17 +30,18 @@ extension Contact{
 @Reducer
 struct ContactsFeature{
     struct State: Equatable{
-        @PresentationState var addContact: AddContactFeature.State?
-        @PresentationState var alert: AlertState<Action.Alert>?
+       // @PresentationState var addContact: AddContactFeature.State?
+        //@PresentationState var alert: AlertState<Action.Alert>?
         var conatacts: IdentifiedArrayOf<Contact> = []
+        @PresentationState var destination: Destination.State?
     }
     
     enum Action{
         case addButtonTapped
-        case addContact(PresentationAction<AddContactFeature.Action>)
-        case alert(PresentationAction<Alert>)
+        //case addContact(PresentationAction<AddContactFeature.Action>)
+        //case alert(PresentationAction<Alert>)
         case deleteButtonTapped(id: Contact.ID)
-        
+        case destination(PresentationAction<Destination.Action>)
         enum Alert: Equatable{
             case confirmDelete(id: Contact.ID)
         }
@@ -50,49 +51,70 @@ struct ContactsFeature{
         Reduce { state, action in
             switch action{
             case .addButtonTapped:
-                state.addContact = AddContactFeature.State(
-                    contact: Contact( name: "")
+                state.destination = .addContact(
+                    AddContactFeature.State(
+                        contact: Contact(name: "")
+                    )
                 )
                 return .none
+          /*
+            case .addContact:
+                return .none
+              */
+            case let .deleteButtonTapped(id: id):
+                state.destination = .alert(
+                    AlertState {
+                        TextState("Are you sure?")
+                    } actions: {
+                        ButtonState(role: .destructive, action: .confirmDelete(id: id)) {
+                            TextState("Delete")
+                        }
+                    }
+                )
+                return .none
+                
+            case let .destination(.presented(.addContact(.delegate(.saveContact(contact))))):
+                state.conatacts.append(contact)
+                return .none
+                
+                
+            case let .destination(.presented(.alert(.confirmDelete(id: id)))):
+                state.conatacts.remove(id: id)
+                return .none
+                
+            case .destination:
+                return .none
+                
                 /*
                  case .addContact(.presented(.delegate(.cancel))):
                  state.addContact = nil
                  return .none
                  */
                 //            case .addContact(.presented(.delegate(.saveContact(conatacts)))): // old
-            case let .addContact(.presented(.delegate(.saveContact(contact)))): // new
-                /*guard let contact = state.addContact?.contact
-                 else { return .none }*/
-                state.conatacts.append(contact)
-                state.addContact = nil
-                return .none
-                
-            case .addContact:
-                return .none
-                
-            case let .deleteButtonTapped(id: id):
-                
-                state.alert = AlertState{
-                    TextState("Are you Sure?")
-                }actions: {
-                    ButtonState(role: .destructive, action: .confirmDelete(id: id)) {
-                        TextState("Delete")
-                    }
-                }
-                return .none
-                
+                /* case let .addContact(.presented(.delegate(.saveContact(contact)))): // new
+                 /*guard let contact = state.addContact?.contact
+                  else { return .none }*/
+                 state.conatacts.append(contact)
+                 state.addContact = nil
+                 return .none
+                 */
+                /*
             case let .alert(.presented(.confirmDelete(id: id))):
                 state.conatacts.remove(id: id)
                 return .none
                 
                 
             case .alert:
-                return .none
+                return .none*/
             }
         }
+        .ifLet(\.$destination, action: \.destination) {
+            Destination()
+        }
+        /*
         .ifLet(\.$addContact, action: \.addContact) {
             AddContactFeature()
         }
-        .ifLet(\.$alert, action: \.alert)
+        .ifLet(\.$alert, action: \.alert)*/
     }
 }
