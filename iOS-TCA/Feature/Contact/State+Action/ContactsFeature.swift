@@ -87,6 +87,14 @@ struct ContactsFeature{
             case .destination:
                 return .none
                 
+                
+            case let .path(.element(id: id, action: .delegate(.confirmDeletion))):
+                guard let detailState = state.path[id: id]
+                else { return .none }
+                state.conatacts.remove(id: detailState.contact.id)
+                return .none
+                
+                
             case .path:
                 return .none
                 /*
