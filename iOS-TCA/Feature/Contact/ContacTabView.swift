@@ -12,18 +12,20 @@ struct ContacTabView: View {
     let store: StoreOf<ContactsFeature>
     
     var body: some View {
-        NavigationStack {
+        NavigationStackStore(self.store.scope(state: \.path, action: \.path)) {
             WithViewStore(self.store, observe: \.conatacts) { viewStore in
                 List {
                     ForEach(viewStore.state) { contact in
-                        HStack {
-                            Text(contact.name)
-                            Spacer()
-                            Button {
-                                viewStore.send(.deleteButtonTapped(id: contact.id))//(id: contact.id))
-                            } label: {
-                                Image(systemName: "trash")
-                                    .foregroundColor(.red)
+                        NavigationLink(state: ContactDetailFeature.State(contact: contact)) {
+                            HStack {
+                                Text(contact.name)
+                                Spacer()
+                                Button {
+                                    viewStore.send(.deleteButtonTapped(id: contact.id))//(id: contact.id))
+                                } label: {
+                                    Image(systemName: "trash")
+                                        .foregroundColor(.red)
+                                }
                             }
                         }
                     }
@@ -40,38 +42,41 @@ struct ContacTabView: View {
                 }
             }
         }
-        .sheet(
-            store: self.store.scope(
-                state: \.$destination.addContact,
-                action: \.destination.addContact
-            )
-        ) { addContactStore in
-            NavigationStack {
-                AddContactView(store: addContactStore)
-            }
-        }
-        .alert(
-            store: self.store.scope(
-                state: \.$destination.alert,
-                action: \.destination.alert
-            )
+    destination: { store in
+        ContactDetailView(store: store)
+    }
+    .sheet(
+        store: self.store.scope(
+            state: \.$destination.addContact,
+            action: \.destination.addContact
         )
+    ) { addContactStore in
+        NavigationStack {
+            AddContactView(store: addContactStore)
+        }
+    }
+    .alert(
+        store: self.store.scope(
+            state: \.$destination.alert,
+            action: \.destination.alert
+        )
+    )
         /*
-        .sheet(
-            store: self.store.scope(
-                state: \.$addContact,
-                action: \.addContact
-            )
-        ) { addContactStore in
-            NavigationStack {
-                AddContactView(store: addContactStore)
-            }
-        }
-        .alert(store: self.store.scope(
-            state: \.$alert,
-            action: \.alert
-        )
-        )*/
+         .sheet(
+         store: self.store.scope(
+         state: \.$addContact,
+         action: \.addContact
+         )
+         ) { addContactStore in
+         NavigationStack {
+         AddContactView(store: addContactStore)
+         }
+         }
+         .alert(store: self.store.scope(
+         state: \.$alert,
+         action: \.alert
+         )
+         )*/
     }
 }
 
